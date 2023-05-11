@@ -1,0 +1,126 @@
+body {
+    background-color: #f4f4f4;
+    color: #555555;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 16px;
+    font-weight: normal;
+
+    font: normal 16px Arial, Helvetica, sens-serif;
+    line-height: 1.5em;
+}
+
+button {
+    background-color: #444444;
+    color: #fff;
+    padding: 10px 15px;
+}
+
+button:hover {
+    background-color: red;
+}
+
+button:active {
+    background-color: white;
+}
+
+a {
+    text-decoration: none;
+    color: #555555
+}
+
+a:hover {
+    color: cyan;
+}
+
+a:visited {
+    color: red;
+}
+
+.clearfix {
+    clear: both;
+}
+
+.box1 {
+    background-color: antiquewhite;
+    color: royalblue;
+
+    border: 5px blue solid;
+    border-right:5px red solid;
+    border-left: 8px blue solid;
+    border-top: 10px green dotted;
+    border-bottom: 1px firebrick double;
+
+    border-bottom-width: 8px;
+    border-bottom-style: dashed;
+
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-left: 10px;
+    padding-right: 10px;
+
+    margin-top: 20px;
+}
+
+.box1 h1 {
+    font-family: 'Times New Roman', Times, serif;
+    font-weight: 800;
+    font-style: italic;
+    text-decoration: underline;
+    text-transform: uppercase;
+    letter-spacing: 1em;
+    word-spacing: 2em;
+}
+
+.box2 {
+    border: 5px dotted #cccccc;
+    border-radius: 35px;
+    padding: 20px;
+    margin: 20px 0;
+}
+
+.box2 h1 {
+    text-align: center;
+}
+
+.container1 {
+    width: 80%;
+    margin: auto;
+}
+
+.list li {
+    list-style-image: url("../img/button.png");
+    list-style: square;
+}
+
+.block {
+    float: left;
+    width: 33.3%;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+}
+
+.main-block {
+    float: left;
+    width: 70%;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+}
+
+#sidebar {
+    float: right;
+    width: 30%;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+}
+
+.list2 li:nth-child(even) {
+    background-color: grey;
+}
+
+.list2 li:first-child {
+    background-color: red;
+}
+
+.list li:nth-child(3) {
+    color: aqua;
+}
