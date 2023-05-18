@@ -1,4 +1,5 @@
 import pandas as pd
+import numpy
 
 
 '''
@@ -23,15 +24,17 @@ Series
 
 '''
 DataFrame
-'''
+# '''
+# [[行内容]]
 # data = [['google', 12], ['facebook', 13], ['win', 14]]
 # df = pd.DataFrame(data, columns=['site', 'age'], dtype=float)
 # print(df)
 
 # ndarrays 创建
+# {列名：列内容}
 # data_item = {'Sites': ['google', 'facebook', 'win'], 'Age': [12, 13, 14]}
 # df2 = pd.DataFrame(data_item)
-# # print(df2)
+# print(df2)
 # # 数据
 # print(df2.values)
 # # 行名称
@@ -40,9 +43,10 @@ DataFrame
 # print(df2.columns)
 
 # 使用字典（key/value），其中字典的 key 为列名
-shit = [{'a': 1, 'b': 2}, {'a': 5, 'b': 3, 'c': 2}]
-df3 = pd.DataFrame(shit)
-print(df3)
+# 多个字典
+# shit = [{'a': 1, 'b': 2}, {'a': 5, 'b': 3, 'c': 2}]
+# df3 = pd.DataFrame(shit)
+# print(df3)
 # loc属性返回指定行的数据
 # print(df3.loc[0])
 # 返回多行数据，使用 [[ ... ]] 格式，... 为各行的索引，以逗号隔开
@@ -53,13 +57,13 @@ print(df3)
 # df.loc[:,'C']  # 选取第C列的数据
 # pd.to_numeric(df["A"]) # 将某一列的数据转换成数值型
 # df.loc[df['A'] > 0, :]  # 取A列大于0的行
-print(df3.loc[0:0, 'a'])
+# print(df3.loc[0:0, 'a'])
 
 
 '''
 读取csv文件内容
 '''
-df = pd.read_csv('data/confid_reuse.csv')
+# df = pd.read_csv('data/confid_reuse.csv')
 # print(df)
 # # to_string() 用于返回 DataFrame 类型的数据，如果不使用该函数，
 # # 则输出结果为数据的前面 5 行和末尾 5 行，中间部分以 ... 代替。
@@ -83,3 +87,28 @@ df = pd.read_csv('data/confid_reuse.csv')
 # print(df.tail())
 # info() 方法返回表格的一些基本信息
 # print(df.info())
+
+
+'''
+数据清洗
+'''
+# 处理缺失
+# 判断是否缺失
+# stud_data=pd.Series(['张三','李四',numpy.nan,[],'',None,'王五'])
+# print(stud_data)
+# print(stud_data.isnull())
+# print(stud_data.notnull())
+
+# stud_df=pd.DataFrame(stud_data,columns=['student_name'])
+# print(stud_df)
+# print(stud_df.isnull())
+# print(stud_df.notnull())
+
+# 处理重复
+# 判断重复
+data=pd.DataFrame({'key1':['A','B']*3+['B'],'key2':[1,1,2,3,3,4,4]})
+print(data)
+print(data.duplicated())
+# 删除重复
+dedup_data = data.drop_duplicates()
+print(dedup_data)

@@ -26,102 +26,48 @@ html_doc = """
 # soup.prettify()  # prettify 有括号和没括号都可以
 # 获取标签
 res = BeautifulSoup(html_doc, 'html.parser')
-# print(res.a)
+print(res.a)
 # 获取标签的名称
-# print(res.a.name)
+print(res.a.name)
 # 获取标签内文本
-# print(res.a.text)
-# print(res.a.string)
+print(res.a.text)
+print(res.a.string)
 # 获取标签内属性
-# print(res.a.attrs)
+print(res.a.attrs)
 # 获取指定属性值
-# print(res.a.attrs.get('href'))
-# print(res.a.get('href'))
+print(res.a.attrs.get('href'))
+print(res.a.get('href'))
 # 获取子节点
-# for i in res.p.children:
-#     print(i)
+for i in res.p.children:
+    print(i)
 # 获取标签内部所有的元素
-# print(res.p.contents)
+print(res.p.contents)
 # 获取标签的父标签
-# print(res.p.parent)
-# print(res.p.parent.name)
+print(res.p.parent)
+print(res.p.parent.name)
 # 获取最上级节点
-# for i in res.p.parents:
-#     print(i)
+for i in res.p.parents:
+    print(i)
 
 # 查找指定标签名的标签 默认只找符合条件的第一个
-# print(res.find(name='p'))
+print(res.find(name='p'))
 # 查找具有某个特定属性的标签 默认只找符合条件的第一个
-# print(res.find(name='p', id='title'))
+print(res.find(name='p', id='title'))
 # 为了解决关键字冲突 会加下划线区分
-# print(res.find(name='p', class_='title'))
+print(res.find(name='p', class_='title'))
 # 使用attrs参数 直接避免冲突
-# print(res.find(name='p', attrs={'class': 'title'}))
+print(res.find(name='p', attrs={'class': 'title'}))
 
 # 查询某一个标签，查找的结果是一个列表
-# print(res.find_all('a'))
-# for link in res.find_all('a'):
-#     print(link.get('href'))
+print(res.find_all('a'))
+for link in res.find_all('a'):
+    print(link.get('href'))
 
 # 查找class含有title的标签
-# print(res.select('.title'))
+print(res.select('.title'))
 # 查看class含有sister标签内部所有的后代span
-# print(res.select('.title b'))
+print(res.select('.title b'))
 # 查找id等于title的标签
-# print(res.select('#title'))
+print(res.select('#title'))
 
 
-from bs4 import BeautifulSoup
-import requests
-import re
-#
-#
-def main():
-    head = {
-        "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/103.0.0.0 Safari/537.36"
-    }
-
-    baseurl = "https://movie.douban.com/top250?start="
-
-    res = requests.get(url=baseurl, headers=head)
-
-    connect = res.text
-
-    res = BeautifulSoup(connect, 'html.parser')
-
-    video = res.select('.grid_view li')
-
-    list = []
-
-    for i in video:
-
-        vidow = {
-            "title": "",
-            "score": 0,
-            "num": 0
-        }
-
-        for item in i.select('.title'):
-            vidow['title'] += item.text.replace("\xa0", " ") #不间断空白符
-
-        for item in i.select('.other'):
-            vidow['title'] += item.text.replace("\xa0", " ")
-
-        # for item in i.select(".bd p"):
-        #     obj = re.compile('\d{4}', re.S)
-        #     result = obj.finditer(item.text)
-        #     for year in result:
-        #         vidow['year'] = year.group()
-
-        for item in i.select(".rating_num"):
-            vidow['score'] = item.text
-
-        vidow['num'] = i.select(".star span")[-1].text.replace("人评价", "")
-
-        list.append(vidow)
-
-    print(list)
-
-
-if __name__ == '__main__':
-    main()
