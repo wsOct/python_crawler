@@ -32,15 +32,16 @@ DataFrame
 
 # ndarrays 创建
 # {列名：列内容}
-# data_item = {'Sites': ['google', 'facebook', 'win'], 'Age': [12, 13, 14]}
-# df2 = pd.DataFrame(data_item)
-# print(df2)
+data_item = {'Sites': ['google', 'facebook', 'win'], 'Age': [12, 13, 14]}
+df2 = pd.DataFrame(data_item)
+print(df2)
 # # 数据
 # print(df2.values)
 # # 行名称
 # print(df2.index)
 # # 列名称
 # print(df2.columns)
+
 
 # 使用字典（key/value），其中字典的 key 为列名
 # 多个字典
@@ -106,9 +107,43 @@ DataFrame
 
 # 处理重复
 # 判断重复
-data=pd.DataFrame({'key1':['A','B']*3+['B'],'key2':[1,1,2,3,3,4,4]})
-print(data)
-print(data.duplicated())
-# 删除重复
-dedup_data = data.drop_duplicates()
-print(dedup_data)
+# data=pd.DataFrame({'key1':['A','B']*3+['B'],'key2':[1,1,2,3,3,4,4]})
+# print(data)
+# print(data.duplicated())
+# # 删除重复
+# dedup_data = data.drop_duplicates()
+# print(dedup_data)
+
+
+'''
+homework
+'''
+# Euro2012_stats.csv
+
+import pandas as pd
+euro12 = pd.read_csv('data/Euro2012_stats.csv')
+# euro12
+
+# 有多少球队参与了2012欧洲杯？
+print(f'共{euro12.shape[0]}只球队')
+print('----------------------------------------------')
+# 将数据集中的列Team, Yellow Cards和Red Cards单独存为一个名叫discipline的数据框
+discipline = euro12[['Team', 'Yellow Cards', 'Red Cards']]
+# 对数据框discipline按照先Red Cards再Yellow Cards进行排序
+print(discipline.sort_values(['Red Cards', 'Yellow Cards'], ascending = False))
+print('----------------------------------------------')
+# 计算每个球队拿到的黄牌数的平均值
+print(f"每个球队拿到的黄牌数平均：{round(discipline['Yellow Cards'].mean())}个")
+print('----------------------------------------------')
+# 找到进球数Goals超过6的球队数据
+print(f'进球数超过6的球队有：\n{euro12[euro12.Goals > 6]}')
+# 选取以字母G开头的球队数据
+# print(euro12[euro12.Team.str.startswith('G')])
+# 选取除了最后3列之外的全部列
+print('----------------------------------------------')
+print(euro12.iloc[: , :-3])
+print('----------------------------------------------')
+# 找到英格兰(England)、意大利(Italy)和俄罗斯(Russia)的射正率(Shooting Accuracy)
+print(euro12.loc[euro12.Team.isin(['England', 'Italy', 'Russia']), ['Team','Shooting Accuracy']])
+
+pd.read_excel()
