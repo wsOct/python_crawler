@@ -24,7 +24,7 @@ dog1.bark('天气真好')
 
 # 字典的操作
 data_dict = {}
-# 遍历字典，使用.items(), 返回字典的keys和values, 所以for key, value
+# 遍历字典，使用.items(), 返回字典的keys和values, 使用for循环遍历访问 key, value
 for key, value in data_dict.items():
     print(key)
     print(value)
@@ -176,6 +176,7 @@ columns = []
 df=pd.DataFrame(data_dict)
 # columns[0]是'国家和地区'，把他作为索引index的name，避免写入csv文件的时候第一行第一列为空，导致逗号开头
 df.index.name = columns[0]
+
 # 按照某列排序
 # axis 如果axis=0，那么by=“列名”； 如果axis=1，那么by=“行名”, 默认值为0
 # ascending: True则升序，默认为True
